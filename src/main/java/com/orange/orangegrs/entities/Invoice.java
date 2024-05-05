@@ -46,7 +46,7 @@ public class Invoice {
 
 
     @Nullable
-    @Column(name = "MonthEnd", columnDefinition = "TINYINT(2)")
+    @Column(name = "MonthEnd", columnDefinition = "TINYINT")
     private Byte monthEnd;
 
 
