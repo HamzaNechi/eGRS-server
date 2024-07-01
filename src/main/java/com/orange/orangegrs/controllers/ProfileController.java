@@ -7,22 +7,27 @@ import com.orange.orangegrs.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/profile")
+//@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class ProfileController {
 
 
     @Autowired
     private ProfileService profileService;
 
-    @PostMapping("/")
-    public ResponseEntity<Profile> addProfile(@RequestBody Profile profile){
-        Profile pr = this.profileService.addProfile(profile);
-        return ResponseEntity.ok(pr);
+
+    @GetMapping("/")
+    public ResponseEntity getAllProfile(){
+        return ResponseEntity.ok(this.profileService.getAllProfiles());
+    }
+
+
+
+    @PutMapping("/")
+    public ResponseEntity updateProfile(@RequestBody Profile profile){
+        return ResponseEntity.ok(this.profileService.updateProfile(profile));
     }
 }

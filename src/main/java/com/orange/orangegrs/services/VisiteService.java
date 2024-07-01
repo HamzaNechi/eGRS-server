@@ -1,7 +1,9 @@
 package com.orange.orangegrs.services;
 
 import com.orange.orangegrs.entities.Visite;
+import com.orange.orangegrs.utils.filtreSpecification.FilterVisitRequest;
 
+import java.util.Date;
 import java.util.List;
 
 public interface VisiteService {
@@ -21,4 +23,14 @@ public interface VisiteService {
     int deleteVisiteByVisiteId(int visiteId);
 
     Visite updateVisite(Visite visite);
+
+
+    List<Visite> getLastTwhoInserted(int siteId);
+
+
+
+    List<Visite> findVisitAddedToDay(Date now);
+
+
+    List<Visite> filtreVisites(FilterVisitRequest filterVisitRequest);
 }

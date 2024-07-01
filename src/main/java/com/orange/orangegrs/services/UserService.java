@@ -1,11 +1,21 @@
 package com.orange.orangegrs.services;
 
 import com.orange.orangegrs.entities.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.data.domain.Page;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
     User findUserByLogin(String login);
+
+
+    Page<User> findAllUsers(Pageable pageable);
+
+    Page<User> findAllUsersByLogin(String login,Pageable pageable);
+
+
+    int deleteUserByLogin(String login);
+
+
+    User updateUser(User user);
 }

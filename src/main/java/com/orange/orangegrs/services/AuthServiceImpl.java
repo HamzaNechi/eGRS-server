@@ -57,8 +57,11 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public AuthResponse signin(AuthResponse signinRequest) {
+        System.out.println("login = "+signinRequest.getLogin());
+        System.out.println("password = "+signinRequest.getPassword());
         AuthResponse response = new AuthResponse();
         try{
+
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getLogin(), signinRequest.getPassword()));
             var user = userRepository.findByLogin(signinRequest.getLogin()).orElseThrow();
             var jwt = jwtUtils.generateToken(user);

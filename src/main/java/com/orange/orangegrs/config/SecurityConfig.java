@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/register").permitAll()
                         .requestMatchers("/api/images/**").permitAll()
-                        //.requestMatchers("/admin/**", "/auth/register").hasAnyAuthority("Administrateur")
+                        .requestMatchers("/admin/**", "/auth/register").hasAnyAuthority("Administrateur")
                         .requestMatchers("/tech/**").hasAnyAuthority("Technicien")
                         .requestMatchers("/techadmin/**").hasAnyAuthority("Administrateur","Technicien")
                         .anyRequest().authenticated())

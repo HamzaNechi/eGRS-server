@@ -2,7 +2,6 @@ package com.orange.orangegrs.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.orange.orangegrs.entities.VisiteTag;
 import lombok.Data;
 
 @Data
@@ -17,5 +16,6 @@ public class VisiteRequest {
     private int otn;
     private int oo;
     private int tt;
-    private VisiteTag tag;
+    private double indexOO;
+    private double indexTT;
 }

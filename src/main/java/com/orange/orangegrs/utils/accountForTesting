@@ -7,9 +7,9 @@ pwd = 123456
 
 //admin
 login = hamzaAdmin
-pwd = admin
+pwd = 123456
 
 
 // technicien 2
-login = hamzaN
-pwd = hamzatech
+login = hamzaTech
+pwd = 123456

@@ -63,6 +63,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> signIn(@RequestBody AuthResponse authRequest){
+        System.out.println("user in login step");
         return ResponseEntity.ok(authService.signin(authRequest));
     }
 

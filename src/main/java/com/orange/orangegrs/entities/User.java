@@ -48,10 +48,10 @@ public class User implements UserDetails {
 
 
     @Column(name = "Status", nullable = false)
-    private byte status;
+    private boolean status;
 
     @Column(name = "IsAD", nullable = false)
-    private byte isAd ;
+    private boolean isAd ;
 
 
     /************************* méthode user détails ************/

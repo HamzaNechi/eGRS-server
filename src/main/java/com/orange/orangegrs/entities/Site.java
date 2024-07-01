@@ -21,7 +21,7 @@ public class Site {
     @Id
     @Nonnull
     @Column( name = "SiteId")
-    private int SiteId;
+    private int siteId;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -52,7 +52,7 @@ public class Site {
 
     @Nonnull
     @Column( name = "ElecMeterRef")
-    private String elecMeterRef;
+    private int elecMeterRef;
 
     @Nullable
     @Temporal(TemporalType.DATE)
@@ -66,7 +66,7 @@ public class Site {
 
     @Nonnull
     @Column( name = "IsSharing")
-    private byte isSharing;
+    private boolean isSharing;
 
     @Nullable
     @Column( name = "EstimatedConsumption")

@@ -25,9 +25,6 @@ public class Visite {
     @Column(name = "PhotoCompteur", nullable = false)
     private String photoCompteur;
 
-    @Column(name = "Tag", nullable = true)
-    @Enumerated(EnumType.STRING)
-    private VisiteTag tag;
 
     @Column(name = "DateInsertion", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -49,15 +46,22 @@ public class Visite {
     @JoinColumn(name = "SiteId")
     private Site site;
 
-    @Column(name = "AmperageOTN", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "AmperageOTN", nullable = false, columnDefinition =  "INT DEFAULT 0")
     private int otn;
 
-    @Column(name = "AmperageOO", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "AmperageOO", nullable = false, columnDefinition =  "INT DEFAULT 0")
     private int oo;
 
 
-    @Column(name = "AmperageTT", nullable = false, columnDefinition = "int default 0")
+    @Column(name = "IndexOO", nullable = false, columnDefinition = "FLOAT DEFAULT 0.0")
+    private double indexOO;
+
+
+    @Column(name = "AmperageTT", nullable = false, columnDefinition =  "INT DEFAULT 0")
     private int tt;
+
+    @Column(name = "IndexTT", nullable = false, columnDefinition = "FLOAT DEFAULT 0.0")
+    private double indexTT;
 
 
 

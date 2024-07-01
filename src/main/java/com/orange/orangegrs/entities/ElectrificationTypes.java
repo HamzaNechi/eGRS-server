@@ -13,7 +13,7 @@ public class ElectrificationTypes {
 
     @Id
     @Column(name = "ElecTypeId")
-    private byte elecTypeId;
+    private short elecTypeId;
 
 
     @Column(name = "Description", length = 100)

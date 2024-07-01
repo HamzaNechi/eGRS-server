@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,9 +25,14 @@ public class InvoiceItemServiceImpl implements InvoiceItemService{
 
     @Override
     public int derniereFactureReel(int siteId) {
-        LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
-        Timestamp startDate = Timestamp.valueOf(sixMonthsAgo.atStartOfDay());
-        return this.invoiceItemRepository.derniereFactureReel(siteId);
+        List<InvoiceItems> invoices = this.invoiceItemRepository.findInvoiceBySite(siteId);
+        int invoiceReal = 0;
+        for (InvoiceItems v : invoices){
+            if(v.getItemType() == 1){
+                invoiceReal++;
+            }
+        }
+        return invoiceReal;
     }
 
     @Override
@@ -41,5 +48,27 @@ public class InvoiceItemServiceImpl implements InvoiceItemService{
     @Override
     public String getDestrictSiteFromInvoiceItem(int siteId) {
         return this.invoiceItemRepository.getDestrictSiteFromInvoiceItem(siteId);
+    }
+
+    @Override
+    public List<InvoiceItems> getInvoiceBetweenTwoVisit(Date endDate, Date startDate, int siteId) {
+        /*return this.invoiceItemRepository.findInvoiceItemsByItemDateBetweenMonths(
+                siteId
+        );*/
+        return this.invoiceItemRepository.findByItemDateBetweenAndSiteId(
+             endDate,
+             startDate,
+             siteId
+        );
+    }
+
+    @Override
+    public InvoiceItems findLastInvoiceBefore(Date startDate, int siteId) {
+        return this.invoiceItemRepository.findLastInvoiceBefore(startDate,siteId);
+    }
+
+    @Override
+    public InvoiceItems findLastInvoiceAfter(Date endDate, int siteId) {
+        return this.invoiceItemRepository.findLastInvoiceAfter(endDate, siteId);
     }
 }
