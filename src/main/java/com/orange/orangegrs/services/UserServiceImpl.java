@@ -52,5 +52,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return this.userRepository.save(user);
     }
 
+    @Override
+    public User findUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User updateUserPassword(String newPassword, User user) {
+        user.setPassword(newPassword);
+        return this.userRepository.save(user);
+    }
 
 }

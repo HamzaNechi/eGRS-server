@@ -13,4 +13,6 @@ public interface AuthService {
 
 
     User getUserConnected(String token);
+
+    int resetPassword(String password, String email);
 }

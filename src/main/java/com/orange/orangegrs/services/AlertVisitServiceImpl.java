@@ -251,8 +251,6 @@ public class AlertVisitServiceImpl implements AlertVisitService{
     public Map<String, Integer> distributionTypeOfAlert() {
         int nombreAlertSurconsommation = this.alertVisitRepository.countAlertVisitByAlertTypes_AlertTypeId(2);
         int nombreAlertFactureReelle = this.alertVisitRepository.countAlertVisitByAlertTypes_AlertTypeId(3);
-        System.out.println("nombre alert surconsommation = "+nombreAlertSurconsommation);
-        System.out.println("nombre alert facture reelle = "+nombreAlertFactureReelle);
         Map<String, Integer> map = new HashMap<>();
         map.put("surconsommation", nombreAlertSurconsommation);
         map.put("sans_facture_reelle", nombreAlertFactureReelle);

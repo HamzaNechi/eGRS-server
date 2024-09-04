@@ -57,8 +57,6 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public AuthResponse signin(AuthResponse signinRequest) {
-        System.out.println("login = "+signinRequest.getLogin());
-        System.out.println("password = "+signinRequest.getPassword());
         AuthResponse response = new AuthResponse();
         try{
 
@@ -105,5 +103,17 @@ public class AuthServiceImpl implements AuthService{
             return user;
         }
         return null;
+    }
+
+    @Override
+    public int resetPassword(String password, String email) {
+        try{
+            User user = userRepository.findByEmail(email);
+            user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
+            return 1;
+        }catch(Exception e){
+            return 0;
+        }
     }
 }

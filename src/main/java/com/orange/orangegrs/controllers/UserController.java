@@ -2,14 +2,20 @@ package com.orange.orangegrs.controllers;
 
 import com.orange.orangegrs.entities.User;
 import com.orange.orangegrs.services.UserService;
+import com.orange.orangegrs.utils.JWTUtils;
+import com.orange.orangegrs.utils.email.EmailSenderService;
 import io.jsonwebtoken.ExpiredJwtException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -18,6 +24,13 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JWTUtils jwtUtils;
+
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
 
@@ -33,6 +46,18 @@ public class UserController {
     public Page<User> getAllUsersByLogin(@RequestParam int page, @RequestParam int size, @PathVariable String login){
         Pageable pageable = PageRequest.of(page, size);
         return this.userService.findAllUsersByLogin(login,pageable);
+    }
+
+
+    @PostMapping("/update/password")
+    public ResponseEntity updateUserPassword(HttpServletRequest request, @RequestBody Map<String, String> body){
+        System.out.println("hello update password");
+        //extract token from request
+        String authHeader = request.getHeader("Authorization");
+        String jwtToken = authHeader.substring(7);
+        User user = this.userService.findUserByLogin(jwtUtils.extractUserNameFromToken(jwtToken)) ;
+        String hashedPassword = passwordEncoder.encode(body.get("password"));
+        return ResponseEntity.ok(this.userService.updateUserPassword(hashedPassword, user));
     }
 
 
